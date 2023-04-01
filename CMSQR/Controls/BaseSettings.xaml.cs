@@ -5,13 +5,14 @@ using System.Drawing;
 using System.Windows.Media.Imaging;
 using CMSQR.ViewModel;
 using System.Drawing.Imaging;
+using System.Windows.Controls;
 
 namespace CMSQR.Controls
 {
     /// <summary>
     /// Interaction logic for BaseSettings.xaml
     /// </summary>
-    public partial class BaseSettings : System.Windows.Controls.UserControl
+    public partial class BaseSettings : UserControl
     {
         public BaseSettings()
         {
