@@ -21,7 +21,7 @@
     <!--<hw:PlainExpander IsExpanded="True" Header="QR Reader" CornerRadius="4" hw:Icon.Default="{StaticResource folder}" Margin="-5,1,5,-1" >-->
     <Expander Header="QR Reader" Background="WhiteSmoke" IsExpanded="True">
         <StackPanel Margin="5">
-            <GroupBox Header="Choose Directory Path">
+            <GroupBox Header="Step-1: Choose Directory Path">
                 <StackPanel>
                     <Grid Margin="0 10">
                         <Grid.ColumnDefinitions>
@@ -29,7 +29,7 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="30"/>
                         </Grid.ColumnDefinitions>
-                        <hw:PlainTextBox x:Name="Paths" WaterMark="Directory path for scanning" Text="{Binding BaseDirectory}" CornerRadius="3"/>
+                        <hw:PlainTextBox x:Name="Paths" WaterMark="Paste the path to generate QR" Text="{Binding BaseDirectory}" CornerRadius="3"/>
                         <hw:PlainButton Command="{Binding BrowseFolderCommand}" CornerRadius="5" Width="80" Grid.Column="1" Content="Browse" Margin="10 0"/>
                         <Ellipse Height="20" Width="20" Grid.Column="2" >
                             <Ellipse.Style>
@@ -59,7 +59,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Image x:Name="QrCode" Binding.SourceUpdated="PlainButton_Click" Margin="20 5 20 5"  Width="Auto" MaxWidth="350" Height="Auto" MaxHeight="350"/>
+                        <Image x:Name="QrCode" Binding.SourceUpdated="PlainButton_Click" Margin="20 5 20 5" Width="Auto" MaxWidth="350" Height="Auto" MaxHeight="350"/>
                     </Grid>
                 </StackPanel>
             </GroupBox>
@@ -77,7 +77,7 @@
                 </StackPanel>
             </GroupBox>
 
-            <GroupBox Header="Choose The File">
+            <GroupBox Header="Step-2: Choose Files">
                 <StackPanel>
                     <Grid Margin="0 10">
                         <Grid.ColumnDefinitions>
@@ -85,7 +85,7 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="30"/>
                         </Grid.ColumnDefinitions>
-                        <hw:PlainTextBox x:Name="File" WaterMark="File for scanning" Text="{Binding FileSelected}" CornerRadius="3"/>
+                        <hw:PlainTextBox x:Name="PDFFile" WaterMark="Select File to Merge" Text="{Binding FileSelected}" CornerRadius="3"/>
                         <hw:PlainButton Command="{Binding BrowseFileCommand}" CornerRadius="5" Width="80" Grid.Column="1" Content="Browse" Margin="10 0"/>
                         <Ellipse Height="20" Width="20" Grid.Column="2" >
                             <Ellipse.Style>
@@ -109,7 +109,7 @@
                 </StackPanel>
             </GroupBox>
 
-            <GroupBox Header="Choose The QRCode">
+            <GroupBox Header="Step-3: Choose QRCode">
                 <StackPanel>
                     <Grid Margin="0 10">
                         <Grid.ColumnDefinitions>
@@ -117,8 +117,8 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="30"/>
                         </Grid.ColumnDefinitions>
-                        <hw:PlainTextBox x:Name="QRImage" WaterMark="QRCode For Merge" Text="{Binding QRFileSelected}" CornerRadius="3"/>
-                        <hw:PlainButton x:Name="QRBrowse" Command="{Binding BrowseQRFileCommand}" CornerRadius="5" Width="80" Grid.Column="1" Content="Browse" Margin="10 0"/>
+                        <hw:PlainTextBox x:Name="QRImage" WaterMark="Select QRCode For Merge" Text="{Binding QRFileSelected}" IsReadOnly="True"  CornerRadius="3" VerticalAlignment="Top"/>
+                        <hw:PlainButton x:Name="QRBrowse" Command="{Binding BrowseQRFileCommand}" IsEnabled="{Binding ElementName=QRImage, Path=IsSelectionActive}" CornerRadius="5" Width="80" Grid.Column="1" Content="Browse" Margin="10 0"/>
                         <Ellipse Height="20" Width="20" Grid.Column="2" >
                             <Ellipse.Style>
                                 <Style TargetType="{x:Type Ellipse}">
@@ -136,8 +136,7 @@
                         </Ellipse>
                     </Grid>
                     <Grid>
-                        <hw:PlainButton x:Name="MergePDF" CornerRadius="5" Width="100" Grid.Column="1" Content="Merge"  IsEnabled="{Binding ElementName=QRImage, Path=Text.Length}" Margin="15 0"/>
-                        <!--Click="MergePDF_Click"-->
+                        <hw:PlainButton x:Name="MergePDF" CornerRadius="5" Width="100" Grid.Column="1" Content="Merge"  IsEnabled="{Binding ElementName=QRImage, Path=Text.Length}" Click="MergePDF_Click" Margin="15 0"/>
                     </Grid>
                 </StackPanel>
             </GroupBox>

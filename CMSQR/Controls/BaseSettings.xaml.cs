@@ -6,6 +6,9 @@ using System.Windows.Media.Imaging;
 using CMSQR.ViewModel;
 using System.Drawing.Imaging;
 using System.Windows.Controls;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using PdfSharp.Pdf.IO;
 
 namespace CMSQR.Controls
 {
@@ -74,7 +77,43 @@ namespace CMSQR.Controls
                 {
                     encoder.Save(stream);
                 }
+                //After Image saved, The saved path reflected in QRImage textbox
+                QRImage.Text = dialog.FileName;
             }
+        }
+
+        private void MergePDF_Click(object sender, RoutedEventArgs e)
+        {
+
+            string imgPath = QRImage.Text;
+            string pdfPath = PDFFile.Text;
+
+            //Loading the existing PDF file
+            iTextSharp.text.pdf.PdfReader reader = new iTextSharp.text.pdf.PdfReader(pdfPath);
+
+            //Create a new PDF Document
+            Document document = new Document();
+
+            //Create a PDFWriter Object
+            PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(pdfPath.ToString()+ "WithQRcode.pdf", FileMode.Create));
+
+            //Open the document and add the existing PDF file to it
+            document.Open();
+            document.AddDocListener(writer);
+            PdfContentByte canvas = writer.DirectContent;
+            PdfImportedPage page = writer.GetImportedPage(reader, 1);
+            canvas.AddTemplate(page, 0, 0);
+
+            //Add the generated QR image to the modified PDF file
+            Bitmap qrImage = new Bitmap(imgPath);
+            iTextSharp.text.Image pdfImage = iTextSharp.text.Image.GetInstance(qrImage, ImageFormat.Png);
+            pdfImage.SetAbsolutePosition(0,0);
+            pdfImage.ScaleToFit(150, 150);
+            document.Add(pdfImage);
+
+            //Close the document and the pdfWriter object
+            document.Close();
+            writer.Close();
         }
     }
 }
