@@ -51,13 +51,13 @@ namespace CMSQR.ViewModel
             set { SetProp(ref _isQrValid, value); }
         }
 
+        private string _selectedPosition;
 
-        //private ExtensionType _extensionMode;
-        //public ExtensionType ExtensionMode
-        //{
-        //    get { return _extensionMode; }
-        //    set { SetProp(ref _extensionMode, value); }
-        //}
+        public string SelectedPosition
+        {
+            get { return _selectedPosition; }
+            set {SetProp(ref  _selectedPosition, value); }
+        }
 
         private string _baseDirectory;
         public string BaseDirectory
@@ -226,30 +226,6 @@ namespace CMSQR.ViewModel
             //    _fidialog.CheckPathExists = FileSelected.Contains(string.Empty);
             //}
         }
-
-
-        //private bool _validateProps(out string _message)
-        //{
-        //    _message = string.Empty;
-        //    if (IsDirPathValid == null || !IsDirPathValid.Value || !(Directory.Exists(BaseDirectory)))
-        //    {
-        //        _message = "Directory Path is not valid";
-        //        return false; //if path is not vlid, do not activate the command
-        //    }
-
-        //    //if (ExtensionMode == ExtensionType.SelectedType && (SelectedFileTypes == null || SelectedFileTypes.Count == 0))
-        //    //{
-        //    //    _message = "For Selected Type mode, atleast one file extension has to be selected.";
-        //    //    return false; //Atleast one file type is required
-        //    //}
-
-        //    if (SelectedDisplayFields == null || SelectedDisplayFields.Count == 0)
-        //    {
-        //        _message = "Select atleast one field to generate and display";
-        //        return false;
-        //    }
-        //    return true;
-        //}
         #endregion
 
 

@@ -8,8 +8,6 @@ using System.Drawing.Imaging;
 using System.Windows.Controls;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-using PdfSharp.Pdf.IO;
-using System.Diagnostics;
 
 namespace CMSQR.Controls
 {
@@ -90,7 +88,7 @@ namespace CMSQR.Controls
             string pdfPath = PDFFile.Text;
 
             //Loading the existing PDF file
-            iTextSharp.text.pdf.PdfReader reader = new iTextSharp.text.pdf.PdfReader(pdfPath);
+            PdfReader reader = new PdfReader(pdfPath);
 
             //Create a new PDF Document
             Document document = new Document(PageSize.A4);
@@ -102,14 +100,41 @@ namespace CMSQR.Controls
             document.Open();
             document.AddDocListener(writer);
             PdfContentByte canvas = writer.DirectContentUnder;
-            PdfImportedPage page = writer.GetImportedPage(reader,1);
+            PdfImportedPage page = writer.GetImportedPage(reader, 1);
             canvas.AddTemplate(page, 0, 0);
 
             //Add the generated QR image to the modified PDF file
             Bitmap qrImage = new Bitmap(imgPath);
             iTextSharp.text.Image pdfImage = iTextSharp.text.Image.GetInstance(qrImage, ImageFormat.Jpeg);
-            pdfImage.SetAbsolutePosition(absoluteX:0,absoluteY:0);
-            pdfImage.ScaleToFit(150, 150);
+
+            // Add the QR code to the PDF file at the selected position
+            ComboBoxItem SelectedPosition = (ComboBoxItem)cmbx.SelectedItem;
+            if (SelectedPosition.Content.ToString() == "Top-Left")
+            {
+                // QRcode Position at Left-Top in PDF
+                pdfImage.SetAbsolutePosition(0, 680);  //LtoR-0 TtoB-680
+            }
+            else if (SelectedPosition.Content.ToString() == "Top-Right")
+            {
+                // QRcode Position at Right-Top in PDF
+                pdfImage.SetAbsolutePosition(445, 680);
+            }
+            else if (SelectedPosition.Content.ToString() == "Center")
+            {
+                // QRcode Position at Center in PDF
+                pdfImage.SetAbsolutePosition(200, 300); //LtoR-200 TtoB-300
+            }
+            else if (SelectedPosition.Content.ToString() == "Bottom-Left")
+            {
+                // QRcode Position at Left-Bottom in PDF
+                pdfImage.SetAbsolutePosition(0, 0);
+            }
+            else if (SelectedPosition.Content.ToString() == "Bottom-Right")
+            {
+                // QRcode Position at Right-Bottom in PDF
+                pdfImage.SetAbsolutePosition(445, 0);
+            }
+            pdfImage.ScaleToFit(120, 120);
             document.Add(pdfImage);
 
             //Close the document and the pdfWriter object

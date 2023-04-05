@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:hw="http://schemas.hpod9.com/haley/wpf"
              xmlns:hm="http://schemas.hpod9.com/haley/mvvm"
+             xmlns:rd="clr-namespace:CMSQR"
              xmlns:local="clr-namespace:CMSQR.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="645" d:DesignWidth="400"
@@ -118,7 +119,7 @@
                             <ColumnDefinition Width="30"/>
                         </Grid.ColumnDefinitions>
                         <hw:PlainTextBox x:Name="QRImage" WaterMark="Select QRCode For Merge" Text="{Binding QRFileSelected}" IsReadOnly="{Binding ElementName=QRImage, Path=Text.Length}"  CornerRadius="3" VerticalAlignment="Top"/>
-                        <hw:PlainButton x:Name="QRBrowse" Command="{Binding BrowseQRFileCommand}" IsEnabled="{Binding ElementName=QRImage, Path=Text.Length}" CornerRadius="5" Width="80" Grid.Column="1" Content="Browse" Margin="10 0"/>
+                        <hw:PlainButton x:Name="QRBrowse" Command="{Binding BrowseQRFileCommand}" CornerRadius="5" Width="80" Grid.Column="1" Content="Browse" Margin="10 0"/>
                         <Ellipse Height="20" Width="20" Grid.Column="2" >
                             <Ellipse.Style>
                                 <Style TargetType="{x:Type Ellipse}">
@@ -136,10 +137,23 @@
                         </Ellipse>
                     </Grid>
                     <Grid>
-                        <!--<StackPanel>
-                            <hw:PlainTextBox/>
-                        </StackPanel>-->
-                        <hw:PlainButton x:Name="MergePDF" CornerRadius="5" Width="100" Grid.Column="1" Content="Merge"  IsEnabled="{Binding ElementName=QRImage, Path=Text.Length}" Click="MergePDF_Click" Margin="15 0"/>
+                        <StackPanel>
+                            <Grid Margin="5 5 0 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Choose Coordination:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <ComboBox Grid.Column="1" x:Name="cmbx" Height="25" Width="120" Margin="0 0 90 0" Style="{StaticResource RoundComboBox}" IsReadOnly="True"  IsEnabled="{Binding ElementName=QRImage, Path=Text.Length}" HorizontalAlignment="Center">
+                                    <ComboBoxItem>Top-Left</ComboBoxItem>
+                                    <ComboBoxItem>Top-Right</ComboBoxItem>
+                                    <ComboBoxItem>Center</ComboBoxItem>
+                                    <ComboBoxItem>Bottom-Left</ComboBoxItem>
+                                    <ComboBoxItem>Bottom-Right</ComboBoxItem>
+                                </ComboBox>
+                            </Grid>
+                            <hw:PlainButton x:Name="MergePDF" CornerRadius="5" Width="100" Margin="1 0 5 0" Grid.Column="1" Content="Merge"  IsEnabled="{Binding ElementName=QRImage, Path=Text.Length}" Click="MergePDF_Click"/>
+                        </StackPanel>
                     </Grid>
                 </StackPanel>
             </GroupBox>
