@@ -134,7 +134,25 @@ namespace CMSQR.Controls
                 // QRcode Position at Right-Bottom in PDF
                 pdfImage.SetAbsolutePosition(445, 0);
             }
-            pdfImage.ScaleToFit(120, 120);
+
+            //Choose the Size of the QRCode
+            ComboBoxItem Size = (ComboBoxItem)cmbx_Size.SelectedItem;
+            if (Size.Content.ToString() == "Small")
+            {
+                // QRcode Size Small
+                pdfImage.ScaleToFit(60, 60);
+            }
+            else if (Size.Content.ToString() == "Medium")
+            {
+                // QRcode Size Medium
+                pdfImage.ScaleToFit(90, 90);
+            }
+            else if (Size.Content.ToString() == "Large")
+            {
+                // QRcode Size Large
+                pdfImage.ScaleToFit(120, 120); 
+            }
+
             document.Add(pdfImage);
 
             //Close the document and the pdfWriter object

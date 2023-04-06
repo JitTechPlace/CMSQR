@@ -152,7 +152,19 @@
                                     <ComboBoxItem>Bottom-Right</ComboBoxItem>
                                 </ComboBox>
                             </Grid>
-                            <hw:PlainButton x:Name="MergePDF" CornerRadius="5" Width="100" Margin="1 0 5 0" Grid.Column="1" Content="Merge"  IsEnabled="{Binding ElementName=QRImage, Path=Text.Length}" Click="MergePDF_Click"/>
+                            <Grid Margin="5 5 0 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="110"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Choose Size:" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                <ComboBox Grid.Column="1" x:Name="cmbx_Size" Height="25" Width="120" Margin="0 0 86 5" Style="{StaticResource RoundComboBox}" IsReadOnly="True"  IsEnabled="{Binding ElementName=QRImage, Path=Text.Length}" HorizontalAlignment="Center">
+                                    <ComboBoxItem>Small</ComboBoxItem>
+                                    <ComboBoxItem>Medium</ComboBoxItem>
+                                    <ComboBoxItem>Large</ComboBoxItem>
+                                </ComboBox>
+                            </Grid>
+                            <hw:PlainButton x:Name="MergePDF" CornerRadius="5" Width="100" Margin="1 0 5 1" Grid.Column="1" HorizontalAlignment="Center" Content="Merge"  IsEnabled="{Binding ElementName=QRImage, Path=Text.Length}" Click="MergePDF_Click"/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
