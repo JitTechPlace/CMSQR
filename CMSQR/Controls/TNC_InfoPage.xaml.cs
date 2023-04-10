@@ -4,24 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
+using System.Windows.Shapes;
 
-
-namespace CMSQR
+namespace CMSQR.Controls
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for TNC_InfoPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class TNC_InfoPage : Window
     {
-        public MainWindow()
+        public TNC_InfoPage()
         {
             InitializeComponent();
+        }
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -29,5 +33,6 @@ namespace CMSQR
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
         }
+
     }
 }

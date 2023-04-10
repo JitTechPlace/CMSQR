@@ -1,0 +1,47 @@
+﻿<Window x:Class="CMSQR.Controls.TNC_InfoPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CMSQR.Controls"
+       xmlns:hw="http://schemas.hpod9.com/haley/wpf"
+        mc:Ignorable="d" WindowStyle="None"  WindowStartupLocation="CenterScreen" 
+        Background="Transparent" AllowsTransparency="True" MouseDown="Window_MouseDown"
+        Title="TNC_InfoPage" ResizeMode="NoResize" Height="350" Width="350">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/CMSQR;component/Resources/CMSQRRD.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Border CornerRadius="10" Background="LightGray">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Image x:Name="Logo" Source="pack://application:,,,/CMSQR;component/Resources/Imgs/TNC_logo.jpg" Margin="20 5 20 5" Width="Auto" MaxWidth="350" Height="Auto" MaxHeight="350"/>
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock x:Name="Pobox" Text="P.O. Box: 7628" />
+                <TextBlock x:Name="Officedtl" Text="Office# 1007, Clover Bay Tower" />
+                <TextBlock x:Name="area" Text="Business Bay, Dubai- U.A.E" />
+                <TextBlock x:Name="Tel" Text="Tel  : 971 4 5515839" />
+                <TextBlock x:Name="fax" Text="Fax  : 971 4 5515829" />
+                <TextBlock x:Name="email" Text="Email : info@tnc-me.com" />
+                <TextBlock x:Name="website" Text="Web  : www.tnc-me.com" />
+            </StackPanel>
+            <StackPanel Grid.Row="2" Margin="5">
+                <TextBlock x:Name="appName" Text="TNC_Invoice_QRGenerater" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="15" Foreground="DarkGreen"/>
+                <TextBlock x:Name="appVer" Text="Version: Pilot" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="14" Foreground="DarkGreen"/>
+                <hw:PlainButton x:Name="Close" CornerRadius="5" Width="100" Margin="5" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="OK" Click="Close_Click"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+
+
+
+</Window>

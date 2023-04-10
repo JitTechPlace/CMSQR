@@ -160,5 +160,16 @@ namespace CMSQR.Controls
             writer.Close();
             MessageBox.Show("Merging Done..", "Result Window");
         }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            Window.GetWindow(this).Close();
+        }
+
+        private void Info_Click(object sender, RoutedEventArgs e)
+        {
+            TNC_InfoPage infoPage = new TNC_InfoPage();
+            infoPage.ShowDialog();
+        }
     }
 }

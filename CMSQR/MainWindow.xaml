@@ -6,12 +6,22 @@
         xmlns:local="clr-namespace:CMSQR"
         xmlns:ctrl="clr-namespace:CMSQR.Controls"
         mc:Ignorable="d"
-        ResizeMode="NoResize" WindowStyle="SingleBorderWindow"
-        Background="WhiteSmoke" WindowStartupLocation="CenterScreen"   
+        ResizeMode="NoResize" WindowStyle="None"
+        Background="Transparent" AllowsTransparency="True" WindowStartupLocation="CenterScreen"   
         Icon="pack://application:,,,/CMSQR;component/Resources/Imgs/TNC_Logo.ico"
-        Title="TNC_Invoice_QRGenerater" Height="650" Width="400">
-    
-    <ScrollViewer >
-        <ctrl:BaseSettings Grid.Row="1"/>
-    </ScrollViewer>
+        Title="TNC_Invoice_QRGenerater" Height="680" Width="400" MouseDown="Window_MouseDown">
+
+    <Border CornerRadius="10" Background="WhiteSmoke">
+        <StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Image x:Name="Logo" Source="pack://application:,,,/CMSQR;component/Resources/Imgs/CMSQR_Logo.ico" Height="15" Width="15" Margin="0 5"/>
+                <TextBlock Text="TNC_Invoice_QRGenerater" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+            <ctrl:BaseSettings Grid.Row="1"/>
+        </StackPanel>
+    </Border>
 </Window>
